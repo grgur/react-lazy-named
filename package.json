@@ -1,6 +1,6 @@
 {
-  "name": "react-lazy-named",
-  "version": "1.0.0",
+  "name": "@grgur/react-lazy-named",
+  "version": "1.1.0",
   "description": "React lazy() with named imports - exports support",
   "main": "dist/cjs/react-lazy-named.js",
   "module": "dist/esm/react-lazy-named.js",
@@ -104,5 +104,8 @@
     "transformIgnorePatterns": [
       "node_modules/(?!(idlize)/)"
     ]
+  },
+  "dependencies": {
+    "lodash.get": "^4.4.2"
   }
 }

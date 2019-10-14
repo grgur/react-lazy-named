@@ -44,6 +44,14 @@ const Card = lazy(() => import('./Card'));
 const Card = lazy(() => import('./Card'), 'default);
 ```
 
+### Deeply nested components
+
+Some libraries like [framer-motion](https://www.framer.com/motion/) use deeply nested components. In other words, they export objects with components in properties. Guess what, you can reach those,too!
+
+```jsx
+const MotionDiv = lazy(() => import('framer-motion'), 'motion.div');
+```
+
 ### Webpack Magic Comments
 
 You can also use Webpack magic comments as usual.
@@ -57,7 +65,7 @@ const PrimaryButton = lazy(
 
 ## Dependencies
 
-Your project should already be running React 16.6+ (React.lazu() required).
+Your project should already be running React 16.6+ (React.lazy() required).
 
 # Development
 

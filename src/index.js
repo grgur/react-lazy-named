@@ -14,12 +14,13 @@
  */
 // @ts-check
 import { lazy } from 'react';
+import get from 'lodash.get';
 
 /**
  * @param {() => Promise<*>} thenable
  * @param {String} name
  */
 const lazier = (thenable, name = 'default') =>
-  lazy(() => thenable().then(mod => ({ default: mod[name] })));
+  lazy(() => thenable().then(mod => ({ default: get(mod, name) })));
 
 export default lazier;

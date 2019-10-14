@@ -22,5 +22,29 @@
     "bundled": 1132,
     "minified": 401,
     "gzipped": 254
+  },
+  "dist/esm/@grgur/react-lazy-named.js": {
+    "bundled": 802,
+    "minified": 253,
+    "gzipped": 179,
+    "treeshaked": {
+      "rollup": {
+        "code": 33,
+        "import_statements": 33
+      },
+      "webpack": {
+        "code": 1050
+      }
+    }
+  },
+  "dist/umd/@grgur/react-lazy-named.js": {
+    "bundled": 25591,
+    "minified": 4786,
+    "gzipped": 1892
+  },
+  "dist/umd/@grgur/react-lazy-named.min.js": {
+    "bundled": 25591,
+    "minified": 4786,
+    "gzipped": 1892
   }
 }
