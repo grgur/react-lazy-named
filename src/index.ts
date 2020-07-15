@@ -13,14 +13,21 @@
  *
  */
 // @ts-check
-import { lazy } from 'react';
+import * as React from 'react';
 import get from 'lodash.get';
+
+type LazyNamed = (
+  thenable: () => Promise<{
+    [name: string]: React.ComponentType<any>;
+  }>,
+  name: string
+) => React.LazyExoticComponent<React.ComponentType<any>>;
 
 /**
  * @param {() => Promise<*>} thenable
  * @param {String} name
  */
-const lazier = (thenable, name = 'default') =>
-  lazy(() => thenable().then(mod => ({ default: get(mod, name) })));
+const lazier: LazyNamed = (thenable, name = 'default') =>
+  React.lazy(() => thenable().then(mod => ({ default: get(mod, name) })));
 
 export default lazier;

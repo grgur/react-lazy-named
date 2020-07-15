@@ -4,6 +4,7 @@ const commonjs = require('rollup-plugin-commonjs');
 const nodeResolve = require('rollup-plugin-node-resolve');
 const { sizeSnapshot } = require('rollup-plugin-size-snapshot');
 const { uglify } = require('rollup-plugin-uglify');
+const typescript = require('rollup-plugin-typescript2');
 const path = require('path');
 const pkg = require('./package.json');
 
@@ -15,7 +16,7 @@ const pkgName = pkg.name.replace('@modus/', '');
 
 const cjs = [
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: {
       file: `dist/cjs/${pkgName}.js`,
       sourcemap: true,
@@ -24,6 +25,10 @@ const cjs = [
     },
     external: isBareModuleId,
     plugins: [
+      typescript({
+        rollupCommonJSResolveHack: false,
+        clean: true,
+      }),
       babel({ exclude: /node_modules/, sourceMaps: true }),
       replace({
         'process.env.NODE_ENV': JSON.stringify('development'),
@@ -32,10 +37,14 @@ const cjs = [
     ],
   },
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: { file: `dist/cjs/${pkgName}.min.js`, sourcemap: true, format: 'cjs' },
     external: isBareModuleId,
     plugins: [
+      typescript({
+        rollupCommonJSResolveHack: false,
+        clean: true,
+      }),
       babel({ exclude: /node_modules/, sourceMaps: true }),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'),
@@ -48,10 +57,13 @@ const cjs = [
 
 const esm = [
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: { file: `dist/esm/${pkgName}.js`, sourcemap: true, format: 'esm' },
     external: isBareModuleId,
     plugins: [
+      typescript({
+        clean: true,
+      }),
       babel({
         exclude: /node_modules/,
         runtimeHelpers: true,
@@ -68,7 +80,7 @@ const globals = { react: 'React' };
 
 const umd = [
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: {
       file: `dist/umd/${pkgName}.js`,
       sourcemap: true,
@@ -80,6 +92,9 @@ const umd = [
     },
     external: Object.keys(globals),
     plugins: [
+      typescript({
+        clean: true,
+      }),
       babel({
         exclude: /node_modules/,
         runtimeHelpers: true,
@@ -101,7 +116,7 @@ const umd = [
     ],
   },
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: {
       file: `dist/umd/${pkgName}.min.js`,
       sourcemap: true,
@@ -113,6 +128,9 @@ const umd = [
     },
     external: Object.keys(globals),
     plugins: [
+      typescript({
+        clean: true,
+      }),
       babel({
         exclude: /node_modules/,
         runtimeHelpers: true,
