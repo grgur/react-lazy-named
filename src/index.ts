@@ -18,7 +18,7 @@ import get from 'lodash.get';
 
 type LazyNamed = (
   thenable: () => Promise<{
-    [name: string]: React.ComponentType<any>;
+    [name: string]: any;
   }>,
   name: string
 ) => React.LazyExoticComponent<React.ComponentType<any>>;
