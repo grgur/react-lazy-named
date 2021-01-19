@@ -25,7 +25,7 @@ type LazyNamed = (
 
 /**
  * @param {() => Promise<*>} thenable
- * @param {String} name
+ * @param {String=} name
  */
 const lazier: LazyNamed = (thenable, name = 'default') =>
   React.lazy(() => thenable().then(mod => ({ default: get(mod, name) })));
