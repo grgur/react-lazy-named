@@ -20,7 +20,7 @@ type LazyNamed = (
   thenable: () => Promise<{
     [name: string]: any;
   }>,
-  name: string
+  name: string = 'default'
 ) => React.LazyExoticComponent<React.ComponentType<any>>;
 
 /**
