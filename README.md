@@ -41,7 +41,7 @@ So you want to use default exports? Sure, just don't use the second argument.
 const Card = lazy(() => import('./Card'));
 
 // same as
-const Card = lazy(() => import('./Card'), 'default);
+const Card = lazy(() => import('./Card'), 'default');
 ```
 
 ### Deeply nested components
