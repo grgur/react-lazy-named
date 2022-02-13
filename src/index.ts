@@ -20,12 +20,12 @@ type LazyNamed = (
   thenable: () => Promise<{
     [name: string]: any;
   }>,
-  name: string
+  name: string = 'default'
 ) => React.LazyExoticComponent<React.ComponentType<any>>;
 
 /**
  * @param {() => Promise<*>} thenable
- * @param {String} name
+ * @param {String} [name="default"]
  */
 const lazier: LazyNamed = (thenable, name = 'default') =>
   React.lazy(() => thenable().then(mod => ({ default: get(mod, name) })));
